@@ -13,6 +13,8 @@ class Posts extends Component {
         super(props);
     }
 
+
+
     componentWillMount(){
         this.props.data.subscribeToMore({
             document: POST_SUB,
@@ -21,17 +23,15 @@ class Posts extends Component {
                     return prev;
                 }
                 const newPostItem = subscriptionData.data.postAdded;
-
                 return Object.assign({}, prev, {
-                    entry: {
-                        posts: [newPostItem, ...prev.entry.post]
-                    }
-                })
+                    posts: [...prev.posts, newPostItem]
+                });
 
             }
         })
 
     }
+    // posts: [newPostItem, ...prev.posts]
     render() {
         let posts = <div></div>
         if (this.props.data.posts && this.props.data.posts instanceof Array) {
@@ -49,6 +49,4 @@ class Posts extends Component {
 }
 
 // Use the graphql container to run the allPosts query and pass the results to PostsContainer
-export default PostsContainer = graphql(ALL_POSTS, {
-    options: {pollInterval: 5000}
-})(Posts);
+export default PostsContainer = graphql(ALL_POSTS)(Posts);

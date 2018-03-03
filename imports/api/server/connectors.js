@@ -15,6 +15,7 @@ const PostModel = db.define('post', {
 });
 
 // create the table if it doesn't exist yet
+
 db.sync();
 
 // export Post
