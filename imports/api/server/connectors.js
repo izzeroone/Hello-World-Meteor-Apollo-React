@@ -19,4 +19,4 @@ db.sync();
 
 // export Post
 const Post = db.models.post;
-export { Post };
+export {db, Post };

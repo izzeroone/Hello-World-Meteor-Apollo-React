@@ -31,6 +31,9 @@ new SubscriptionServer({
     schema,
     execute,
     subscribe,
+    onConnect: async (connectionParams, webSocket) => {
+        console.log('Get connected');
+    }
     // // on connect subscription lifecycle event
     // onConnect: async (connectionParams, webSocket) => {
     //   // if a meteor login token is passed to the connection params from the client,
